@@ -136,11 +136,12 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/eleIM"
                 android:gravity="center"
-                android:text="继电器"
-                android:textColor="#696969" />
+                android:text="窗"
+                android:textColor="#696969"
+                android:id="@+id/" />
 
             <Button
-                android:id="@+id/eleSwitch"
+                android:id="@+id/windowSwitch"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
@@ -170,11 +171,12 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/lightIm"
                 android:gravity="center"
-                android:text="灯"
-                android:textColor="#696969" />
+                android:text="窗帘"
+                android:textColor="#696969"
+                android:id="@+id/" />
 
             <Button
-                android:id="@+id/ledSwitch"
+                android:id="@+id/curtainSwitch"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"

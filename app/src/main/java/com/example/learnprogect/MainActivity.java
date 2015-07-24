@@ -2,6 +2,7 @@ package com.example.learnprogect;
 
 import com.example.learnprogect.socket.TcpSocket;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.annotation.SuppressLint;
@@ -19,13 +20,16 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener,
 		OnSeekBarChangeListener {
-	private Button ledSwitch, alertSwitch,currentVB,eleSwitch;
+
+	//窗帘开关，闹钟开关，窗户开关
+	private Button curtainSwitch, alertSwitch, windowSwitch;
 	private Button upB, downB, leftB, rightB, stopB, hourB,minuteB, cancelB, setB;
 	private TextView temp,hehum;
 	private SeekBar setVBar;
 	private TcpSocket tcpSocket;
 	private TimePicker timePicker;
 	private RelativeLayout tempRelative;
+
 	private byte ledStatus;
 	private byte alertStatus;
 	private byte eleStatus;
@@ -56,8 +60,8 @@ public class MainActivity extends Activity implements OnClickListener,
 	}
 
 	private void findView() {
-		ledSwitch = (Button) findViewById(R.id.ledSwitch);
-		eleSwitch = (Button) findViewById(R.id.eleSwitch);
+		curtainSwitch = (Button) findViewById(R.id.curtainSwitch);
+		windowSwitch = (Button) findViewById(R.id.windowSwitch);
 		alertSwitch = (Button) findViewById(R.id.alertSwitch);
 		upB = (Button) findViewById(R.id.upButton);
 		downB = (Button) findViewById(R.id.downButton);
@@ -66,14 +70,14 @@ public class MainActivity extends Activity implements OnClickListener,
 		stopB = (Button) findViewById(R.id.stopButton);
 		hourB = (Button) findViewById(R.id.hourButton);
 		minuteB = (Button) findViewById(R.id.minuteButton);
-		currentVB = (Button) findViewById(R.id.vTB);
+//		currentVB = (Button) findViewById(R.id.vTB);
 		setVBar = (SeekBar) findViewById(R.id.svS);
 		tempRelative = (RelativeLayout) findViewById(R.id.tempRelative);
 		temp = (TextView) findViewById(R.id.temp);
 		hehum = (TextView) findViewById(R.id.hehum);
 		// 注册点击事件
 		upB.setOnClickListener(this);
-		ledSwitch.setOnClickListener(this);
+		curtainSwitch.setOnClickListener(this);
 		alertSwitch.setOnClickListener(this);
 		downB.setOnClickListener(this);
 		leftB.setOnClickListener(this);
@@ -81,7 +85,7 @@ public class MainActivity extends Activity implements OnClickListener,
 		stopB.setOnClickListener(this);
 		hourB.setOnClickListener(this);
 		minuteB.setOnClickListener(this);
-		eleSwitch.setOnClickListener(this);
+		windowSwitch.setOnClickListener(this);
 		setVBar.setOnSeekBarChangeListener(this);
 		tempRelative.setOnClickListener(this);
 	}
@@ -105,7 +109,7 @@ public class MainActivity extends Activity implements OnClickListener,
 
 			break;
 		case 0x05:
-			currentVB.setText("" +( bytes[1]&0xff)/10.0f);
+//			currentVB.setText("" +( bytes[1]&0xff)/10.0f);
 			break;
 		case 0x06:
 
@@ -162,10 +166,10 @@ public class MainActivity extends Activity implements OnClickListener,
 		case R.id.ledSwitch:  //控制led
 			if (ledStatus == 0) {
 				ledStatus = 0x01;
-				ledSwitch.setBackgroundResource(R.drawable.on);
+				curtainSwitch.setBackgroundResource(R.drawable.on);
 			}else {
 				ledStatus = 0x00;
-				ledSwitch.setBackgroundResource(R.drawable.off);
+				curtainSwitch.setBackgroundResource(R.drawable.off);
 			}
 			bytes = new byte[] { 0x01, ledStatus };
 			sendMessage(bytes);
@@ -184,10 +188,10 @@ public class MainActivity extends Activity implements OnClickListener,
 		case R.id.eleSwitch:
 			if (eleStatus == 0) {
 				eleStatus = 0x01;
-				eleSwitch.setBackgroundResource(R.drawable.on);
+				windowSwitch.setBackgroundResource(R.drawable.on);
 			}else {
 				eleStatus = 0x00;
-				eleSwitch.setBackgroundResource(R.drawable.off);
+				windowSwitch.setBackgroundResource(R.drawable.off);
 			}
 			bytes = new byte[] { 0x06, eleStatus };
 			sendMessage(bytes);
@@ -197,12 +201,15 @@ public class MainActivity extends Activity implements OnClickListener,
 		}
 		
 	}
-	private Dialog dialog;
+	private AlertDialog dialog;
     private int hour;
     private int minute;
 	private void showDialog() {
 		if (dialog == null) {
-			dialog = new Dialog(this, R.style.dialog1);
+			AlertDialog.Builder builder=new AlertDialog.Builder(this);
+			builder.setTitle("设置闹钟");
+			dialog=builder.create();
+//			dialog = new Dialog(this, R.style.dialog1);
 			dialog.setCanceledOnTouchOutside(false);
 			dialog.setContentView(R.layout.timedialog);
 			setB = (Button)  dialog.findViewById(R.id.setButton);
