@@ -14,9 +14,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="零度创意"
+            android:text="智能窗户系统"
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -138,7 +139,7 @@
                 android:gravity="center"
                 android:text="窗"
                 android:textColor="#696969"
-                android:id="@+id/" />
+                 />
 
             <Button
                 android:id="@+id/windowSwitch"
@@ -173,7 +174,7 @@
                 android:gravity="center"
                 android:text="窗帘"
                 android:textColor="#696969"
-                android:id="@+id/" />
+                 />
 
             <Button
                 android:id="@+id/curtainSwitch"
@@ -322,8 +323,6 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="140dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/adcback" >
 

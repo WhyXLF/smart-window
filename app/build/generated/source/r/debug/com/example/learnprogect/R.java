@@ -44,15 +44,14 @@ public final class R {
         public static final int alertSwitch=0x7f080013;
         public static final int cancelButton=0x7f08001c;
         public static final int centerT=0x7f08001a;
+        public static final int curtainSwitch=0x7f080009;
         public static final int downButton=0x7f08000f;
         public static final int eleIM=0x7f080006;
-        public static final int eleSwitch=0x7f080007;
         public static final int elelicLine=0x7f08000a;
         public static final int hehum=0x7f080005;
         public static final int hehumIm=0x7f080004;
         public static final int hourButton=0x7f080011;
         public static final int hourT=0x7f080010;
-        public static final int ledSwitch=0x7f080009;
         public static final int leftButton=0x7f08000c;
         public static final int lightIm=0x7f080008;
         public static final int minuteButton=0x7f080012;
@@ -69,6 +68,7 @@ public final class R {
         public static final int upButton=0x7f08000e;
         public static final int vTB=0x7f080016;
         public static final int vvT=0x7f080015;
+        public static final int windowSwitch=0x7f080007;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

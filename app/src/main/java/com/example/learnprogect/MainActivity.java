@@ -3,11 +3,11 @@ package com.example.learnprogect;
 import com.example.learnprogect.socket.TcpSocket;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -30,9 +30,9 @@ public class MainActivity extends Activity implements OnClickListener,
 	private TimePicker timePicker;
 	private RelativeLayout tempRelative;
 
-	private byte ledStatus;
+	private byte curtainStatus;
 	private byte alertStatus;
-	private byte eleStatus;
+	private byte windowStatus;
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
 		@Override
@@ -163,15 +163,15 @@ public class MainActivity extends Activity implements OnClickListener,
 			bytes = new byte[]{0x02,(byte) 0xff};
 			sendMessage(bytes);
 			break;
-		case R.id.ledSwitch:  //控制led
-			if (ledStatus == 0) {
-				ledStatus = 0x01;
+		case R.id.curtainSwitch:  //控制led
+			if (curtainStatus == 0) {
+				curtainStatus = 0x01;
 				curtainSwitch.setBackgroundResource(R.drawable.on);
 			}else {
-				ledStatus = 0x00;
+				curtainStatus = 0x00;
 				curtainSwitch.setBackgroundResource(R.drawable.off);
 			}
-			bytes = new byte[] { 0x01, ledStatus };
+			bytes = new byte[] { 0x01, curtainStatus};
 			sendMessage(bytes);
 			break;
 		case R.id.alertSwitch: //定时开关
@@ -185,15 +185,15 @@ public class MainActivity extends Activity implements OnClickListener,
 			bytes = new byte[] { 0x04, (byte)hour,(byte)minute,alertStatus };
 			sendMessage(bytes);
 			break;
-		case R.id.eleSwitch:
-			if (eleStatus == 0) {
-				eleStatus = 0x01;
+		case R.id.windowSwitch:
+			if (windowStatus == 0) {
+				windowStatus = 0x01;
 				windowSwitch.setBackgroundResource(R.drawable.on);
 			}else {
-				eleStatus = 0x00;
+				windowStatus = 0x00;
 				windowSwitch.setBackgroundResource(R.drawable.off);
 			}
-			bytes = new byte[] { 0x06, eleStatus };
+			bytes = new byte[] { 0x06, windowStatus};
 			sendMessage(bytes);
 			break;
 		default:
@@ -201,15 +201,14 @@ public class MainActivity extends Activity implements OnClickListener,
 		}
 		
 	}
-	private AlertDialog dialog;
+	private Dialog dialog;
     private int hour;
     private int minute;
 	private void showDialog() {
 		if (dialog == null) {
-			AlertDialog.Builder builder=new AlertDialog.Builder(this);
-			builder.setTitle("设置闹钟");
-			dialog=builder.create();
-//			dialog = new Dialog(this, R.style.dialog1);
+//			AlertDialog.Builder builder=new AlertDialog.Builder(this);
+//			builder.setTitle("设置闹钟");
+			dialog = new Dialog(this, R.style.dialog1);
 			dialog.setCanceledOnTouchOutside(false);
 			dialog.setContentView(R.layout.timedialog);
 			setB = (Button)  dialog.findViewById(R.id.setButton);
