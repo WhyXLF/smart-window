@@ -9,6 +9,8 @@
     <string name="action_settings">Settings</string>
     <string name="app_name">LearnProgect</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_advice">Advice</string>
+    <string name="title_activity_weather_report">WeatherReport</string>
     <!-- From: file:/Users/xiaoliufu/AndroidStudioProjects/LearnProgect%200628/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">

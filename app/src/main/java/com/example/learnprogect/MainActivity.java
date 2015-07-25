@@ -1,9 +1,12 @@
 package com.example.learnprogect;
 
+import com.example.learnprogect.advicePackage.Advice;
 import com.example.learnprogect.socket.TcpSocket;
+import com.example.learnprogect.weatherPackage.WeatherReport;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.annotation.SuppressLint;
@@ -18,14 +21,15 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements OnClickListener,
-		OnSeekBarChangeListener {
+public class MainActivity extends Activity implements OnClickListener{
 
 	//窗帘开关，闹钟开关，窗户开关
 	private Button curtainSwitch, alertSwitch, windowSwitch;
 	private Button upB, downB, leftB, rightB, stopB, hourB,minuteB, cancelB, setB;
+
+	private Button btnWeather,btnAdvice;
 	private TextView temp,hehum;
-	private SeekBar setVBar;
+//	private SeekBar setVBar;
 	private TcpSocket tcpSocket;
 	private TimePicker timePicker;
 	private RelativeLayout tempRelative;
@@ -71,10 +75,13 @@ public class MainActivity extends Activity implements OnClickListener,
 		hourB = (Button) findViewById(R.id.hourButton);
 		minuteB = (Button) findViewById(R.id.minuteButton);
 //		currentVB = (Button) findViewById(R.id.vTB);
-		setVBar = (SeekBar) findViewById(R.id.svS);
+//		setVBar = (SeekBar) findViewById(R.id.svS);
 		tempRelative = (RelativeLayout) findViewById(R.id.tempRelative);
 		temp = (TextView) findViewById(R.id.temp);
 		hehum = (TextView) findViewById(R.id.hehum);
+		btnAdvice= (Button) findViewById(R.id.btnAdvice);
+		btnWeather= (Button) findViewById(R.id.btnWeather);
+
 		// 注册点击事件
 		upB.setOnClickListener(this);
 		curtainSwitch.setOnClickListener(this);
@@ -86,8 +93,10 @@ public class MainActivity extends Activity implements OnClickListener,
 		hourB.setOnClickListener(this);
 		minuteB.setOnClickListener(this);
 		windowSwitch.setOnClickListener(this);
-		setVBar.setOnSeekBarChangeListener(this);
+//		setVBar.setOnSeekBarChangeListener(this);
 		tempRelative.setOnClickListener(this);
+		btnWeather.setOnClickListener(this);
+		btnAdvice.setOnClickListener(this);
 	}
 
 	private void refreshView(byte bytes[]) {
@@ -163,7 +172,7 @@ public class MainActivity extends Activity implements OnClickListener,
 			bytes = new byte[]{0x02,(byte) 0xff};
 			sendMessage(bytes);
 			break;
-		case R.id.curtainSwitch:  //控制led
+		case R.id.curtainSwitch:  //控制窗帘
 			if (curtainStatus == 0) {
 				curtainStatus = 0x01;
 				curtainSwitch.setBackgroundResource(R.drawable.on);
@@ -196,6 +205,13 @@ public class MainActivity extends Activity implements OnClickListener,
 			bytes = new byte[] { 0x06, windowStatus};
 			sendMessage(bytes);
 			break;
+			case R.id.btnAdvice:
+				Intent i=new Intent(this,Advice.class);
+				startActivity(i);
+				break;
+			case R.id.btnWeather:
+				startActivity(new Intent(this,WeatherReport.class));
+				break;
 		default:
 			break;
 		}
@@ -221,21 +237,7 @@ public class MainActivity extends Activity implements OnClickListener,
 		}
 		dialog.show();
 	}
-	@Override
-	public void onProgressChanged(SeekBar arg0, int arg1, boolean arg2) {
-		byte[] bytes = new byte[] { 0x05,(byte) arg1 };
-		sendMessage(bytes);
-	}
 
-	@Override
-	public void onStartTrackingTouch(SeekBar arg0) {
-
-	}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar arg0) {
-
-	}
 
     private void sendMessage(final byte[] bytes) {
     	new Thread(new Runnable() {

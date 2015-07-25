@@ -7,15 +7,21 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
-<uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.learnprogect.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +29,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".advicePackage.Advice"
+            android:label="@string/title_activity_advice" >
+        </activity>
+        <activity
+            android:name=".weatherPackage.WeatherReport"
+            android:label="@string/title_activity_weather_report" >
+        </activity>
+
+        <service
+            android:name=".ServicePackage.MyService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>

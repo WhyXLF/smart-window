@@ -39,11 +39,12 @@ public final class R {
         public static final int title=0x7f020015;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001d;
-        public static final int adcIM=0x7f080014;
+        public static final int action_settings=0x7f08001a;
         public static final int alertSwitch=0x7f080013;
-        public static final int cancelButton=0x7f08001c;
-        public static final int centerT=0x7f08001a;
+        public static final int btnAdvice=0x7f080015;
+        public static final int btnWeather=0x7f080014;
+        public static final int cancelButton=0x7f080019;
+        public static final int centerT=0x7f080017;
         public static final int curtainSwitch=0x7f080009;
         public static final int downButton=0x7f08000f;
         public static final int eleIM=0x7f080006;
@@ -56,31 +57,33 @@ public final class R {
         public static final int lightIm=0x7f080008;
         public static final int minuteButton=0x7f080012;
         public static final int rightButton=0x7f08000d;
-        public static final int setButton=0x7f08001b;
-        public static final int setvT=0x7f080017;
+        public static final int setButton=0x7f080018;
         public static final int stopButton=0x7f08000b;
-        public static final int svS=0x7f080018;
         public static final int temp=0x7f080003;
         public static final int tempIm=0x7f080001;
         public static final int tempLine=0x7f080002;
         public static final int tempRelative=0x7f080000;
-        public static final int timePicker=0x7f080019;
+        public static final int timePicker=0x7f080016;
         public static final int upButton=0x7f08000e;
-        public static final int vTB=0x7f080016;
-        public static final int vvT=0x7f080015;
         public static final int windowSwitch=0x7f080007;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int timedialog=0x7f030001;
+        public static final int activity_advice=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_weather_report=0x7f030002;
+        public static final int timedialog=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f070000;
+        public static final int menu_advice=0x7f070001;
+        public static final int menu_weather_report=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f060000;
         public static final int app_name=0x7f060001;
         public static final int hello_world=0x7f060002;
+        public static final int title_activity_advice=0x7f060003;
+        public static final int title_activity_weather_report=0x7f060004;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
